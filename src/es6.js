@@ -37,7 +37,20 @@ function calculateSalaryDifference(array = []) {
 // присмотритесь к коллекции "Map"
 // Словарь - (string, string), и все это не null и не undefined
 // * покройте класс тестами
-class Dictionary {}
+class Dictionary {
+    constructor () {
+        this.map = new Map();
+    }
+
+    set (key, value) {
+        if (typeof(key) !== 'string' || typeof(value) !== 'string') return false;
+        return this.map.set(key, value);
+    }
+
+    get (key) {
+        return this.map.get(key);
+    }
+}
 
 module.exports = {
     fioToName,
