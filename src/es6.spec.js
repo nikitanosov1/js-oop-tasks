@@ -42,19 +42,19 @@ describe('es6', () => {
             assert.strictEqual(!!dic, true);
         });
 
-        it ('вставка некорректных пар возвращает false', () => {
+        it ('вставка некорректных пар возвращает undefined', () => {
             const dic = new core.Dictionary();
-            assert.strictEqual(dic.set(null, null), false);
-            assert.strictEqual(dic.set(undefined, undefined), false);
-            assert.strictEqual(dic.set(undefined, null), false);
-            assert.strictEqual(dic.set(null, undefined), false);
-            assert.strictEqual(dic.set("car", undefined), false);
-            assert.strictEqual(dic.set(undefined, "car"), false);
-            assert.strictEqual(dic.set("car", null), false);
-            assert.strictEqual(dic.set(null, "car"), false);
-            assert.strictEqual(dic.set([1, 2, 3], "car"), false);
-            assert.strictEqual(dic.set([1, 2, 3], [1, 2, 3]), false);
-            assert.strictEqual(dic.set("privet", Symbol("symbol")), false);
+            assert.strictEqual(dic.set(null, null), undefined);
+            assert.strictEqual(dic.set(undefined, undefined), undefined);
+            assert.strictEqual(dic.set(undefined, null), undefined);
+            assert.strictEqual(dic.set(null, undefined), undefined);
+            assert.strictEqual(dic.set("car", undefined), undefined);
+            assert.strictEqual(dic.set(undefined, "car"), undefined);
+            assert.strictEqual(dic.set("car", null), undefined);
+            assert.strictEqual(dic.set(null, "car"), undefined);
+            assert.strictEqual(dic.set([1, 2, 3], "car"), undefined);
+            assert.strictEqual(dic.set([1, 2, 3], [1, 2, 3]), undefined);
+            assert.strictEqual(dic.set("privet", Symbol("symbol")), undefined);
         });
 
         it ('проверка вставки и получения корректных данных', () => {

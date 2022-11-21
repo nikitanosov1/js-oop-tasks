@@ -6,7 +6,7 @@
 // Напишите функцию, которая принимает ФИО пользователя и возвращает
 // строку формата Имя Фамилия
 function fioToName(fio) {
-    const [fam, name, ot] = new String(fio).split(' ')
+    const [fam, name, ot] = String(fio).split(' ')
     return name + ' ' + fam;
 }
 
@@ -43,8 +43,8 @@ class Dictionary {
     }
 
     set (key, value) {
-        if (typeof(key) !== 'string' || typeof(value) !== 'string') return false;
-        return this.map.set(key, value);
+        if (typeof(key) !== 'string' || typeof(value) !== 'string') return;
+        this.map.set(key, value);
     }
 
     get (key) {
