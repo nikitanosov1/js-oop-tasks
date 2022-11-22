@@ -58,22 +58,22 @@ describe('ООП', () => {
     describe('#Queue', () => {
         it('проверка массивом', () => {
             const queue = new core.Queue();
-            assert.strictEqual(queue.head.next, null);
-            assert.strictEqual(queue.tail.prev, null);
+            assert.strictEqual(queue.head, null);
+            assert.strictEqual(queue.tail, null);
         });
 
         it('проверка на пограничные случаи', () => {
             const queue = new core.Queue();
             queue.push(1);
             assert.strictEqual(queue.pop(), 1);
-            assert.strictEqual(queue.pop(), "noSuchElementException");
+            assert.throws(() => {queue.pop()}, /^Error: noSuchElementException$/);
             queue.push(-5);
             queue.push(3);
             queue.push(10);
             assert.strictEqual(queue.pop(), -5);
             assert.strictEqual(queue.pop(), 3);
             assert.strictEqual(queue.pop(), 10);
-            assert.strictEqual(queue.pop(), "noSuchElementException");
+            assert.throws(() => {queue.pop()}, /^Error: noSuchElementException$/);
         });
 
         it('может создаться из массива', () => {
@@ -82,7 +82,7 @@ describe('ООП', () => {
             assert.strictEqual(queue.pop(), 2);
             assert.strictEqual(queue.pop(), 3);
             assert.strictEqual(queue.pop(), 5);
-            assert.strictEqual(queue.pop(), "noSuchElementException");
+            assert.throws(() => {queue.pop()}, /^Error: noSuchElementException$/);
         });
     });
 });

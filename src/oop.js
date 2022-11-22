@@ -36,7 +36,8 @@ class Point3D extends Point {
  * Со звездочкой: написать тесты методы класса (oop.spec.js)
  */
 class Node {
-    constructor(val = 0, next = null, prev = null) {
+    constructor(val, next = null, prev = null) {
+        if (val === undefined || val === null) throw new Error("val is required!");
         this.val = val;
         this.next = next;
         this.prev = prev;
@@ -45,8 +46,8 @@ class Node {
 
 class Queue {
     constructor (arr = []) {
-        this.head = new Node();
-        this.tail = new Node();
+        this.head = null;
+        this.tail = null;
 
         for (let x of arr) {
             this.push(x);
@@ -54,30 +55,33 @@ class Queue {
     }
 
     push (x) {
-        if (this.head.next === null) {
-            this.head.next = new Node(x);
-            this.tail.prev = this.head.next;
+        if (this.tail === null) {
+            // if length = 0
+            this.tail = new Node(x);
+            this.head = this.tail;
         } else {
-            this.tail.prev.next = new Node(x, this.tail.prev, null);
-            this.tail.prev = this.tail.prev.next;
+            // if length > 0
+            this.tail.next = new Node(x, this.tail, null);
+            this.tail = this.tail.next;
         }
     }
 
     pop () {
-        if (this.head.next === null) {
-            return "noSuchElementException";
-        } else if (this.head.next === this.tail.prev) {
-            let result = this.head.next.val;
-            this.head.next = null;
-            this.tail.prev = null;
-            return result;
+        if (this.head === null) {
+            throw new Error("noSuchElementException");
         } else {
-            let result = this.head.next.val;
-            this.head.next = this.head.next.next;
-            this.head.next.prev = null;
+            let result = this.head.val; // saved head.val
+            if (this.head === this.tail) {
+                // if length = 1 (head === tail)
+                this.head = null;
+                this.tail = null;
+            } else {
+                // if length > 1
+                this.head = this.head.next;
+                this.head.prev = null;
+            }
             return result;
         }
-
     }
 }
 
