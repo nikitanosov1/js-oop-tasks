@@ -48,10 +48,7 @@ class Queue {
     constructor (arr = []) {
         this.head = null;
         this.tail = null;
-
-        for (let x of arr) {
-            this.push(x);
-        }
+        arr.forEach((x) => {this.push(x)});
     }
 
     push (x) {
