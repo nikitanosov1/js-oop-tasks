@@ -66,14 +66,16 @@ describe('ООП', () => {
             const queue = new core.Queue();
             queue.push(1);
             assert.strictEqual(queue.pop(), 1);
-            assert.throws(() => {queue.pop()}, /^Error: noSuchElementException$/);
+            assert.strictEqual(queue.pop(), undefined);
+            // assert.throws(() => {queue.pop()}, /^Error: noSuchElementException$/);
+            // Оставлю для будущего себя, чтоб подглядывать как на throw проверять :)
             queue.push(-5);
             queue.push(3);
             queue.push(10);
             assert.strictEqual(queue.pop(), -5);
             assert.strictEqual(queue.pop(), 3);
             assert.strictEqual(queue.pop(), 10);
-            assert.throws(() => {queue.pop()}, /^Error: noSuchElementException$/);
+            assert.strictEqual(queue.pop(), undefined);
         });
 
         it('может создаться из массива', () => {
@@ -82,7 +84,7 @@ describe('ООП', () => {
             assert.strictEqual(queue.pop(), 2);
             assert.strictEqual(queue.pop(), 3);
             assert.strictEqual(queue.pop(), 5);
-            assert.throws(() => {queue.pop()}, /^Error: noSuchElementException$/);
+            assert.strictEqual(queue.pop(), undefined);
         });
     });
 });

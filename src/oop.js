@@ -37,7 +37,6 @@ class Point3D extends Point {
  */
 class Node {
     constructor(val, next = null, prev = null) {
-        if (val === undefined || val === null) throw new Error("val is required!");
         this.val = val;
         this.next = next;
         this.prev = prev;
@@ -58,14 +57,14 @@ class Queue {
             this.head = this.tail;
         } else {
             // if length > 0
-            this.tail.next = new Node(x, this.tail, null);
+            this.tail.next = new Node(x, null, this.tail);
             this.tail = this.tail.next;
         }
     }
 
     pop () {
         if (this.head === null) {
-            throw new Error("noSuchElementException");
+            return;
         } else {
             let result = this.head.val; // saved head.val
             if (this.head === this.tail) {
